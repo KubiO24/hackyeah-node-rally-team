@@ -17,7 +17,7 @@ export default function App({ Component, pageProps }) {
     return (
         <>
             <Header navigateToPage={navigateToPage} />
-            <Component {...pageProps} navigateToPage={navigateToPage} activePage={activePage} />
+            <Component {...pageProps} navigateToPage={navigateToPage} activePage={activePage} se />
         </>
     );
 }
