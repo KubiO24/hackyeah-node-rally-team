@@ -94,12 +94,14 @@ export default function Index({ navigateToPage }) {
                 <p>{recipe}</p>
                 <p>Nutrition:</p>
                 <p>{JSON.stringify(nutrition, null, 5)}</p>
-                <button onClick={handleClick}>click</button>
+                <button className={styles.button} onClick={handleClick}>
+                    Analyze Recipe
+                </button>
                 <p>Loading: {JSON.stringify(loading)}</p>
                 <p>Error: {JSON.stringify(error)}</p>
-                {response && (
+                {!response && (
                     <>
-                        <h1>Health status:</h1>
+                        <span className={styles.healthStatusTitle}>Health status</span>
                         <div style={{ width: 100, height: 100, position: "relative" }}>
                             <span className={styles.healthStatus}>{healthStatus}%</span>
                             <svg width={SIZE} height={SIZE}>
@@ -125,13 +127,37 @@ export default function Index({ navigateToPage }) {
                                 />
                             </svg>
                         </div>
-                        {substitutions.map((substitution) => (
-                            <div>
-                                <p>Ingredient: {substitution.ingredient}</p>
-                                <p>substitution: {substitution.substitution}</p>
-                                <p>Reason: {substitution.reason}</p>
+                        <div className={styles.substitutions}>
+                            <div className={styles.substitution}>
+                                <div>
+                                    <span className={styles.before}>mleko krowie</span>
+                                    <img className={styles.arrow} src="/icons/arrow.svg" alt="arrow" />
+                                    <span className={styles.after}>mleko sojowe</span>
+                                </div>
+                                <span className={styles.reason}>
+                                    xyz jpsf xyz jpsf xyz jpsf xyz jpsf xyz jpsf xyz jpsf xyz jpsf xyz jpsf xyz jpsf xyz
+                                    jpsf
+                                </span>
                             </div>
-                        ))}
+                            <div className={styles.substitution}>
+                                <div>
+                                    <span className={styles.before}>mięso wieprzowe</span>
+                                    <img className={styles.arrow} src="/icons/arrow.svg" alt="arrow" />
+                                    <span className={styles.after}>mięso indycze</span>
+                                </div>
+                                <span className={styles.reason}>xyz jpsf xyz jpsf</span>
+                            </div>
+                            {substitutions.map((substitution) => (
+                                <div className={styles.substitution}>
+                                    <div>
+                                        <span className={styles.before}>{substitution.ingredient}</span>
+                                        <img className={styles.arrow} src="/icons/arrow.svg" alt="arrow" />
+                                        <span className={styles.after}>{substitution.substitution}</span>
+                                    </div>
+                                    <span className={styles.reason}>{substitution.reason}</span>
+                                </div>
+                            ))}
+                        </div>
                         <h1>{response}</h1>
                     </>
                 )}
