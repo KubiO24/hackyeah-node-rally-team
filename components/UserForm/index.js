@@ -106,8 +106,8 @@ export default function UserForm({ navigateToPage }) {
           >
             <option value="">Select Activity</option>
             {activityOptions.map((o) => (
-              <option key={o} value={o}>
-                {o}
+              <option key={o.label} value={o.value}>
+                {o.labels}
               </option>
             ))}
           </select>
