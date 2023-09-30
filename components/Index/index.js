@@ -3,6 +3,7 @@ import styles from "../../styles/Pages.module.css";
 import getSubstitutions from "../../utils/getSubstitutions";
 
 export default function Index({ navigateToPage }) {
+
   const [response, setResponse] = useState("");
   const [healthStatus, setHealthStatus] = useState(0);
   const [substitutions, setSubstitutions] = useState([]);
@@ -21,26 +22,22 @@ export default function Index({ navigateToPage }) {
     let trainingPreference = localStorage.getItem("trainingPreference");
     let isPregnant = localStorage.getItem("isPregnant");
 
-    let userObject = {
-      weight,
-      height,
-      activity,
-      trainingGoal,
-      sex,
-      foodAllergy,
-      trainingPreference,
-      isPregnant,
-    };
+        let userObject = {
+            weight,
+            height,
+            activity,
+            trainingGoal,
+            sex,
+            foodAllergy,
+            trainingPreference,
+            isPregnant,
+        };
 
-    chrome.runtime.sendMessage(
-      { type: "getRecipeData" },
-      async (recipeData) => {
-        let recipe =
-          recipeData.title +
-          " ingredients: " +
-          JSON.stringify(recipeData.ingredients);
+        chrome.runtime.sendMessage({ type: "getRecipeData" }, async (recipeData) => {
+            let recipe = recipeData.title + " ingredients: " + JSON.stringify(recipeData.ingredients);
 
-        let substitutions = await getSubstitutions(recipe);
+            let substitutions = await getSubstitutions(recipe);
+
 
         if (!substitutions) {
           setError(true);
@@ -52,11 +49,11 @@ export default function Index({ navigateToPage }) {
         setHealthStatus(substitutions.healthProcent);
         setSubstitutions(substitutions.list);
 
-        setLoading(false);
-      }
-    );
-  };
+            setLoading(false);
+        });
+    };
 
+ 
   return (
     <div className={styles.container}>
       <main className={styles.main}>
@@ -76,4 +73,5 @@ export default function Index({ navigateToPage }) {
       </main>
     </div>
   );
+
 }

@@ -17,6 +17,7 @@ export default function App({ Component, pageProps }) {
     console.log("activePage: ", activePage);
   }, [activePage]);
 
+
   return (
     <>
       <Header navigateToPage={navigateToPage} />
