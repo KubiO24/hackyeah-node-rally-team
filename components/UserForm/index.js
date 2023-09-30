@@ -111,7 +111,7 @@ export default function UserForm({ navigateToPage }) {
           >
             <option value="">Select Activity</option>
             {activityOptions.map((o) => (
-              <option key={o.label} value={o.value}>
+              <option key={o.label} value={JSON.stringify(o.value)}>
                 {o.label}
               </option>
             ))}
