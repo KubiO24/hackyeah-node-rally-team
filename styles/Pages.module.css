@@ -45,6 +45,7 @@
 .substitution {
     display: flex;
     flex-direction: column;
+    font-size: 18px;
 }
 
 .substitution div {
@@ -66,4 +67,5 @@
 
 .reason {
     text-align: center;
+    font-size: 14px;
 }
