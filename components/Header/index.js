@@ -1,6 +1,4 @@
-import Link from "next/link";
 import styles from "./Header.module.css";
-import { useEffect } from "react";
 
 export default function Header({ navigateToPage }) {
   return (

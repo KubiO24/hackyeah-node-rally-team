@@ -1,25 +1,29 @@
-const axios = require("axios");
+import OpenAI from "openai";
 
-export default async function getCaloriesBurned(duration, weight, activity) {
-  console.log(activity);
-  if (!activity) {
-    activity = "run";
-  }
+const openai = new OpenAI({
+  apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
+  dangerouslyAllowBrowser: true,
+});
 
-  const options = {
-    method: "GET",
-    url: "https://api.api-ninjas.com/v1/caloriesburned",
-    params: { duration, weight, activity },
-    headers: {
-      "X-Api-Key": process.env.NINJA_API_KEY,
-    },
-  };
+export default function getCaloriesBurned(thisPerson, meal) {
+  const activities = [
+    { name: "Walking", kcal: 50 },
+    { name: "Running", kcal: 114 },
+    { name: "Cycling", kcal: 100 },
+    { name: "Swimming", kcal: 120 },
+    { name: "Weight lifting", kcal: 80 },
+  ];
 
-  try {
-    const response = await axios.request(options);
-    console.log(response.data);
-  } catch (error) {
-    console.error(error);
-  }
-  return [...response.data];
+  const res = [
+    ...activities.map((activity) => {
+      return {
+        name: activity.name,
+        time: parseInt(
+          (parseFloat(meal.kcal) / parseFloat(activity.kcal)) * 10
+        ),
+      };
+    }),
+  ];
+
+  return res;
 }
