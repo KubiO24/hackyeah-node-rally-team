@@ -11,10 +11,10 @@ if (domain.includes("allrecipes")) {
 }
 
 if (title && ingredients && ingredients.length > 0) {
-    console.log(title);
-    console.log(ingredients);
+    const recipeData = { title, ingredients };
+    console.log(recipeData);
 
-    chrome.runtime.sendMessage({ type: "setIngredients", ingredients });
+    chrome.runtime.sendMessage({ type: "setRecipeData", recipeData });
 }
 
 // document.getElementById("prompt-textarea").style.backgroundColor = "red";

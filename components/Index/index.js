@@ -25,8 +25,8 @@ export default function Index({ navigateToPage }) {
       isPregnant,
     };
 
-    chrome.runtime.sendMessage({ type: "getIngredients" }, (ingredients) => {
-      setResponse(ingredients);
+    chrome.runtime.sendMessage({ type: "getRecipeData" }, (recipeData) => {
+      setResponse(JSON.stringify(recipeData));
     });
   };
 
