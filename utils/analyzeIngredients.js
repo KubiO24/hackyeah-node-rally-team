@@ -18,9 +18,10 @@ const validateIngredients = (ingredients) => {
 
 const fetchIngredientsData = async (ingredients) => {
     const payload = preparePayload(ingredients);
-    const url = `${process.env.EDEMAM_BASE_URL}/api/nutrition-details?app_id=${process.env.EDEMAM_APP_ID}&app_key=${process.env.EDEMAM_APP_KEY}`;
-
+    const url = `${process.env.NEXT_PUBLIC_EDEMAM_BASE_URL}/api/nutrition-details?app_id=${process.env.NEXT_PUBLIC_EDEMAM_APP_ID}&app_key=${process.env.NEXT_PUBLIC_EDEMAM_APP_KEY}`;
+    console.log("url: ", url);
     const response = await fetch(url, payload);
+
     const data = await response.json();
 
     return data;
@@ -42,4 +43,4 @@ const preparePayload = (ingredients) => {
     return payload;
 };
 
-export default handler;
+export default analyzeIngredients;
