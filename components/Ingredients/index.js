@@ -3,30 +3,19 @@ import styles from "../../styles/Pages.module.css";
 import getSubstitutions from "../../utils/getSubstitutions";
 import analyzeIngredients from "../../utils/analyzeIngredients";
 
-export default function Index({ navigateToPage }) {
+export default function Index({
+    navigateToPage,
+    setIngredientsNutrition,
+    ingredientsNutrition,
+    substitutionsNutrition,
+    setSubstitutionsNutrition,
+}) {
     const [response, setResponse] = useState("");
     const [healthStatus, setHealthStatus] = useState(0);
     const [substitutions, setSubstitutions] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
-    const [recipe, setRecipe] = useState("");
-    const [nutrition, setNutrition] = useState({});
-
-    const analyzeIngredientsTest = () => {
-        console.log("analyzeIngredientsTest");
-        const ingredients = [
-            "1 ½ cups all-purpose flour",
-            "3 ½ teaspoons baking powder",
-            "1 tablespoon white sugar",
-            "¼ teaspoon salt, or more to taste",
-            "1 ¼ cups milk",
-            "3 tablespoons butter, melted",
-            "1 egg",
-        ];
-
-        const data = analyzeIngredients(ingredients);
-        console.log(data);
-    };
+    const [recipe, setRecipe] = useState([]);
 
     const handleClick = () => {
         setLoading(true);
@@ -54,10 +43,10 @@ export default function Index({ navigateToPage }) {
         chrome.runtime.sendMessage({ type: "getRecipeData" }, async (recipeData) => {
             let recipe = recipeData.title + " ingredients: " + JSON.stringify(recipeData.ingredients);
 
+            const data = await analyzeIngredients(recipeData.ingredients);
+            setIngredientsNutrition(data);
+            setSubstitutionsNutrition(data);
             setRecipe(recipeData.ingredients);
-
-            // const ingredientsNutrition = await analyzeIngredients(recipeData.ingredients, userObject);
-            // setNutrition(ingredientsNutrition);
 
             let substitutions = await getSubstitutions(recipe);
 
@@ -82,7 +71,9 @@ export default function Index({ navigateToPage }) {
                 <p>Recipe:</p>
                 <p>{recipe}</p>
                 <p>Nutrition:</p>
-                <p>{JSON.stringify(nutrition, null, 5)}</p>
+                <p>{JSON.stringify(ingredientsNutrition, null, 5)}</p>
+                <p>Substitution nutrition: </p>
+                <p>{JSON.stringify(substitutionsNutrition, null, 5)}</p>
                 <button onClick={handleClick}>click</button>
                 <p>Loading: {JSON.stringify(loading)}</p>
                 <p>Error: {JSON.stringify(error)}</p>
