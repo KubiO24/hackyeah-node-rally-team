@@ -39,7 +39,7 @@
 .substitutions {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 28px;
 }
 
 .substitution {
