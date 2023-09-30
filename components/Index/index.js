@@ -5,6 +5,26 @@ export default function Index({ navigateToPage }) {
   const [response, setResponse] = useState("");
 
   const handleClick = () => {
+    let weight = localStorage.getItem("weight");
+    let height = localStorage.getItem("height");
+    let activity = localStorage.getItem("activity");
+    let trainingGoal = localStorage.getItem("trainingGoal");
+    let sex = localStorage.getItem("sex");
+    let foodAllergy = JSON.parse(localStorage.getItem("foodAllergy"));
+    let trainingPreference = localStorage.getItem("trainingPreference");
+    let isPregnant = localStorage.getItem("isPregnant");
+
+    let userObject = {
+      weight,
+      height,
+      activity,
+      trainingGoal,
+      sex,
+      foodAllergy,
+      trainingPreference,
+      isPregnant,
+    };
+
     chrome.runtime.sendMessage({ type: "getIngredients" }, (ingredients) => {
       setResponse(ingredients);
     });
