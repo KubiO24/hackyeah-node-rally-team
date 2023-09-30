@@ -5,8 +5,8 @@ export default function Index({ navigateToPage }) {
     const [response, setResponse] = useState("");
 
     const handleClick = () => {
-        chrome.runtime.sendMessage({ type: "getIngredients" }, (ingredients) => {
-            setResponse(ingredients);
+        chrome.runtime.sendMessage({ type: "getRecipeData" }, (recipeData) => {
+            setResponse(JSON.stringify(recipeData));
         });
     };
 
