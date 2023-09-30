@@ -3,30 +3,21 @@ import styles from "../../styles/Pages.module.css";
 import getSubstitutions from "../../utils/getSubstitutions";
 import analyzeIngredients from "../../utils/analyzeIngredients";
 
-export default function Index({ navigateToPage }) {
-  const [response, setResponse] = useState("");
-  const [healthStatus, setHealthStatus] = useState(0);
-  const [substitutions, setSubstitutions] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
-  const [recipe, setRecipe] = useState("");
-  const [nutrition, setNutrition] = useState({});
 
-  const analyzeIngredientsTest = () => {
-    console.log("analyzeIngredientsTest");
-    const ingredients = [
-      "1 ½ cups all-purpose flour",
-      "3 ½ teaspoons baking powder",
-      "1 tablespoon white sugar",
-      "¼ teaspoon salt, or more to taste",
-      "1 ¼ cups milk",
-      "3 tablespoons butter, melted",
-      "1 egg",
-    ];
+export default function Index({
+    navigateToPage,
+    setIngredientsNutrition,
+    ingredientsNutrition,
+    substitutionsNutrition,
+    setSubstitutionsNutrition,
+}) {
+    const [response, setResponse] = useState("");
+    const [healthStatus, setHealthStatus] = useState(0);
+    const [substitutions, setSubstitutions] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(false);
+    const [recipe, setRecipe] = useState([]);
 
-    const data = analyzeIngredients(ingredients);
-    console.log(data);
-  };
 
   const handleClick = () => {
     setLoading(true);
@@ -59,12 +50,14 @@ export default function Index({ navigateToPage }) {
           " ingredients: " +
           JSON.stringify(recipeData.ingredients);
 
-        setRecipe(recipeData.ingredients);
 
-        // const ingredientsNutrition = await analyzeIngredients(recipeData.ingredients, userObject);
-        // setNutrition(ingredientsNutrition);
+            const data = await analyzeIngredients(recipeData.ingredients);
+            setIngredientsNutrition(data);
+            setSubstitutionsNutrition(data);
+            setRecipe(recipeData.ingredients);
 
-        let substitutions = await getSubstitutions(recipe);
+            let substitutions = await getSubstitutions(recipe);
+
 
         if (!substitutions) {
           setError(true);
@@ -76,10 +69,10 @@ export default function Index({ navigateToPage }) {
         setHealthStatus(substitutions.healthProcent);
         setSubstitutions(substitutions.list);
 
+
         setLoading(false);
-      }
-    );
-  };
+        });
+    };
 
   return (
     <div className={styles.container}>
