@@ -84,15 +84,25 @@ export default function UserForm({ navigateToPage }) {
             <form className={styles.form} onSubmit={handleSubmit}>
                 <label>
                     Weight:
-                    <input type="number" value={weight} onChange={(e) => setWeight(e.target.value)} />
+                    <input
+                        type="number"
+                        className={styles.input}
+                        value={weight}
+                        onChange={(e) => setWeight(e.target.value)}
+                    />
                 </label>
                 <label>
                     Height:
-                    <input type="number" value={height} onChange={(e) => setHeight(e.target.value)} />
+                    <input
+                        type="number"
+                        className={styles.input}
+                        value={height}
+                        onChange={(e) => setHeight(e.target.value)}
+                    />
                 </label>
                 <label>
                     Activity:
-                    <select value={activity} onChange={(e) => setActivity(e.target.value)}>
+                    <select className={styles.input} value={activity} onChange={(e) => setActivity(e.target.value)}>
                         <option value="">Select Activity</option>
                         {activityOptions.map((o) => (
                             <option key={o} value={o}>
@@ -103,7 +113,11 @@ export default function UserForm({ navigateToPage }) {
                 </label>
                 <label>
                     Training Goal:
-                    <select value={trainingGoal} onChange={(e) => setTrainingGoal(e.target.value)}>
+                    <select
+                        className={styles.input}
+                        value={trainingGoal}
+                        onChange={(e) => setTrainingGoal(e.target.value)}
+                    >
                         <option value="">Select Training Goal</option>
                         {trainingGoalOptions.map((o) => (
                             <option key={o} value={o}>
@@ -114,7 +128,7 @@ export default function UserForm({ navigateToPage }) {
                 </label>
                 <label>
                     Sex:
-                    <select value={sex} onChange={(e) => setSex(e.target.value)}>
+                    <select className={styles.input} value={sex} onChange={(e) => setSex(e.target.value)}>
                         <option value="">Select Sex</option>
                         {sexOptions.map((o) => (
                             <option key={o} value={o}>
@@ -125,7 +139,11 @@ export default function UserForm({ navigateToPage }) {
                 </label>
                 <label>
                     Training Preference:
-                    <select value={trainingPreference} onChange={(e) => setTrainingPreference(e.target.value)}>
+                    <select
+                        className={styles.input}
+                        value={trainingPreference}
+                        onChange={(e) => setTrainingPreference(e.target.value)}
+                    >
                         <option value="">Select Training Preference</option>
                         {trainingPreferenceOptions.map((o) => (
                             <option key={o} value={o}>
@@ -135,25 +153,34 @@ export default function UserForm({ navigateToPage }) {
                     </select>
                 </label>
                 <div className={styles.foodAllergy}>
-                    <p>Select Food Allergies:</p>
-                    {foodAllergyOptions.map((option) => (
-                        <label key={option}>
-                            <input
-                                type="checkbox"
-                                value={option}
-                                checked={foodAllergy.includes(option)}
-                                onChange={() => {
-                                    // Toggle the other options
-                                    setFoodAllergy((prevFoodAllergy) =>
-                                        prevFoodAllergy.includes(option)
-                                            ? prevFoodAllergy.filter((item) => item !== option)
-                                            : [...prevFoodAllergy, option]
-                                    );
-                                }}
-                            />
-                            {option}
-                        </label>
-                    ))}
+                    <p>Select Food Allergens:</p>
+                    <div className={styles.allergens}>
+                        {foodAllergyOptions.map((option) => (
+                            <label key={option}>
+                                <input
+                                    type="checkbox"
+                                    value={option}
+                                    checked={foodAllergy.includes(option)}
+                                    onChange={() => {}} // Keep this to avoid console warnings, or you can handle the state change here as well
+                                    style={{ display: "none" }}
+                                />
+                                <span
+                                    className={styles.allergen}
+                                    onClick={() => {
+                                        // Toggle the other options
+                                        setFoodAllergy((prevFoodAllergy) =>
+                                            prevFoodAllergy.includes(option)
+                                                ? prevFoodAllergy.filter((item) => item !== option)
+                                                : [...prevFoodAllergy, option]
+                                        );
+                                    }}
+                                    style={{ color: foodAllergy.includes(option) ? "black" : "rgb(180, 180, 180)" }}
+                                >
+                                    {option}
+                                </span>
+                            </label>
+                        ))}
+                    </div>
                 </div>
 
                 <div className={styles.pregnancy}>
@@ -162,7 +189,9 @@ export default function UserForm({ navigateToPage }) {
                         Pregnancy
                     </label>
                 </div>
-                <button type="submit">Continue</button>
+                <button className={styles.button} type="submit">
+                    Continue
+                </button>
             </form>
         </div>
     );
