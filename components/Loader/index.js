@@ -24,7 +24,7 @@ export default function Loader() {
           r="1"
         ></circle>
         <circle
-          class={[styles.circle, styles.styles.circleTwo]}
+          class={[styles.circle, styles.circleTwo]}
           cy="25"
           cx="45"
           r="1"

@@ -66,7 +66,7 @@ export default function Trening() {
           ))}
         </ul>
         <h3>Here are our traing plans for you based on your prefferences: </h3>
-        {!!workoutPlan ? (
+        {workoutPlan.length ? (
           <ol>
             {workoutPlan.map((workout, idx) => (
               <li key={idx}>
