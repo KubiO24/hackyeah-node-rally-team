@@ -2,7 +2,7 @@ const axios = require("axios");
 
 export default async function handler(req, res) {
   let { duration, weight, activity } = req.body;
-  console.log(activityw);
+  console.log(activity);
   if (!activity) {
     activity = "run";
   }

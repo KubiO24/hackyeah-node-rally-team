@@ -15,27 +15,37 @@ export default function UserForm({ navigateToPage }) {
         <input placeholder="Height" type="number" />
         <select>
           {activityOptions.map((o) => (
-            <option value={o}>{o}</option>
+            <option key={o.value} value={o.value}>
+              {o.label}
+            </option>
           ))}
         </select>
         <select>
           {trainingGoalOptions.map((o) => (
-            <option value={o}>{o}</option>
+            <option key={o} value={o}>
+              {o}
+            </option>
           ))}
         </select>
         <select>
           {sexOptions.map((o) => (
-            <option value={o}>{o}</option>
+            <option key={o} value={o}>
+              {o}
+            </option>
           ))}
         </select>
         <select>
           {foodAllergyOptions.map((o) => (
-            <option value={o}>{o}</option>
+            <option key={o} value={o}>
+              {o}
+            </option>
           ))}
         </select>
         <select>
           {trainingPreferenceOptions.map((o) => (
-            <option value={o}>{o}</option>
+            <option key={o} value={o}>
+              {o}
+            </option>
           ))}
         </select>
       </div>
