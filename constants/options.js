@@ -51,7 +51,6 @@ export const sexOptions = [
 ];
 
 export const foodAllergyOptions = [
-  "None (No Food Allergies)",
   "Dairy",
   "Eggs",
   "Peanuts",
