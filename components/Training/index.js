@@ -2,6 +2,7 @@ import styles from "./Trening.module.css";
 import React, { useState, useEffect } from "react";
 import getWorkoutPlan from "../../utils/getWorkoutPlan";
 import getCaloriesBurned from "../../utils/getCaloriesBurned";
+import Loader from "../Loader";
 
 export default function Trening() {
   const [activity, setActivity] = useState({});
@@ -65,22 +66,26 @@ export default function Trening() {
           ))}
         </ul>
         <h3>Here are our traing plans for you based on your prefferences: </h3>
-        <ol>
-          {workoutPlan.map((workout, idx) => (
-            <li key={idx}>
-              <h3>{workout.title}</h3>
-              <p>{workout.description}</p>
-              <ul>
-                {workout.exercises.map((excersise, idx) => (
-                  <li key={idx}>
-                    {excersise.name} - {excersise.duration} -{" "}
-                    {excersise.burnedCalories} kcal
-                  </li>
-                ))}
-              </ul>
-            </li>
-          ))}
-        </ol>
+        {!!workoutPlan ? (
+          <ol>
+            {workoutPlan.map((workout, idx) => (
+              <li key={idx}>
+                <h3>{workout.title}</h3>
+                <p>{workout.description}</p>
+                <ul>
+                  {workout.exercises.map((excersise, idx) => (
+                    <li key={idx}>
+                      {excersise.name} - {excersise.duration} -{" "}
+                      {excersise.burnedCalories} kcal
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ))}
+          </ol>
+        ) : (
+          <Loader />
+        )}
       </article>
     </div>
   );
