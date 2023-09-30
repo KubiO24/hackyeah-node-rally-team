@@ -16,14 +16,10 @@ export default function App({ Component, pageProps }) {
     if (localStorage.getItem("weight") !== null) setActivePage("ingredients");
   }, []);
 
-  return (
-    <>
-      <Header navigateToPage={navigateToPage} />
-      <Component
-        {...pageProps}
-        navigateToPage={navigateToPage}
-        activePage={activePage}
-      />
-    </>
-  );
+    return (
+        <>
+            <Header activePage={activePage} navigateToPage={navigateToPage} />
+            <Component {...pageProps} navigateToPage={navigateToPage} activePage={activePage} />
+        </>
+    );
 }
