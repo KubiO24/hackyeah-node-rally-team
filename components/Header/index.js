@@ -1,22 +1,24 @@
 import styles from "./Header.module.css";
-import { useEffect } from "react";
 
-export default function Header({ navigateToPage }) {
+export default function Header({ activePage, navigateToPage }) {
     return (
         <div className={styles.container}>
             <p
-                className={styles.head}
-                onClick={() => {
-                    console.log("clicked");
-                    navigateToPage("ingredients");
-                }}
+                className={`${styles.link} ${activePage == "ingredients" && styles.selected}`}
+                onClick={() => navigateToPage("ingredients")}
             >
                 Ingredients
             </p>
-            <p className={styles.head} onClick={() => navigateToPage("substitutions")}>
+            <p
+                className={`${styles.link} ${activePage == "substitutions" && styles.selected}`}
+                onClick={() => navigateToPage("substitutions")}
+            >
                 Substitutions
             </p>
-            <p className={styles.head} onClick={() => navigateToPage("training")}>
+            <p
+                className={`${styles.link} ${activePage == "training" && styles.selected}`}
+                onClick={() => navigateToPage("training")}
+            >
                 Training
             </p>
         </div>

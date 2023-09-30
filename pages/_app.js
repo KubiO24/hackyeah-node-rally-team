@@ -19,7 +19,7 @@ export default function App({ Component, pageProps }) {
 
     return (
         <>
-            <Header navigateToPage={navigateToPage} />
+            <Header activePage={activePage} navigateToPage={navigateToPage} />
             <Component {...pageProps} navigateToPage={navigateToPage} activePage={activePage} />
         </>
     );

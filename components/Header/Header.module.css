@@ -1,17 +1,25 @@
-.head {
-  font-size: medium;
-  width: 100%;
-  height: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid black;
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    height: 50px;
 }
 
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 400px;
-  height: 50px;
+.link {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: medium;
+    color: #969696;
+    cursor: pointer;
+    transition: all 0.1s ease;
+}
+
+.link.selected {
+    color: black;
+    font-size: 1.1em;
+    cursor: default;
 }
