@@ -20,7 +20,13 @@ export default function Home({ navigateToPage, activePage }) {
                     setSubstitutionsNutrition={setSubstitutionsNutrition}
                 />
             )}
-            {activePage === "substitutions" && <Substitutions navigateToPage={navigateToPage} />}
+            {activePage === "substitutions" && (
+                <Substitutions
+                    navigateToPage={navigateToPage}
+                    ingredientsNutrition={ingredientsNutrition}
+                    substitutionsNutrition={substitutionsNutrition}
+                />
+            )}
             {activePage === "training" && <Training navigateToPage={navigateToPage} />}
         </>
     );
