@@ -1,13 +1,11 @@
 const axios = require("axios");
 
-export default async function handler(req, res) {
-  let { duration, weight, activity } = req.body;
+export default async function getCaloriesBurned(duration, weight, activity) {
   console.log(activity);
   if (!activity) {
     activity = "run";
   }
 
-  console.log(process.env.NINJA_API_KEY, process.env.OPENAI_API_KEY);
   const options = {
     method: "GET",
     url: "https://api.api-ninjas.com/v1/caloriesburned",
@@ -20,8 +18,8 @@ export default async function handler(req, res) {
   try {
     const response = await axios.request(options);
     console.log(response.data);
-    res.status(200).json({ activity, excercises: response.data });
   } catch (error) {
     console.error(error);
   }
+  return [...response.data];
 }
