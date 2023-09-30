@@ -13,13 +13,19 @@ export default function App({ Component, pageProps }) {
   };
 
   useEffect(() => {
-    if (localStorage.getItem("weight") !== null) setActivePage("ingredients");
+    if (localStorage.getItem("weight") !== null) setActivePage("substitutions");
   }, []);
 
-    return (
-        <>
-            <Header activePage={activePage} navigateToPage={navigateToPage} />
-            <Component {...pageProps} navigateToPage={navigateToPage} activePage={activePage} />
-        </>
-    );
+  return (
+    <>
+      {activePage !== "userForm" && (
+        <Header activePage={activePage} navigateToPage={navigateToPage} />
+      )}
+      <Component
+        {...pageProps}
+        navigateToPage={navigateToPage}
+        activePage={activePage}
+      />
+    </>
+  );
 }
