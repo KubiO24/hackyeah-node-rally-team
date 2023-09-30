@@ -9,44 +9,23 @@ const openai = new OpenAI({
 
 export default async function handler(req, res) {
   let prompt =
-    "You are professional dietician. Please check this recipe and tell me if it is healthy. If any ingredient has better substitute change recipe to use it and all descriptions why it is better to use it will nutritions facts.First line of your output should be: 'Meal is healthy in ${procent}%' and you should generate procent variable. Next you should output only numerated list of only ingredient  substitution that  will make big impact on recipe health, nothing more in format 'Ingredient : ${nameOfIngredient} \n - substitution: ... \n reason: ...', You cannot display ingredient in list when no substitution is needed. No prose. Here is recipe: ";
+    "You are professional dietician. Please check this recipe and tell me if it is healthy. If any ingredient has better substitute change recipe to use it and all descriptions why it is better to use it will nutritions facts. Next you should output only numerated list of only ingredient substitution that will make big impact on recipe health, nothing more in format '{ingredient: ..., substitution: ..., reason: ...}', You cannot display ingredient in list when no substitution is needed. Overall format should be : '{healthProcent: ..., list: }', it has to be valid json. No prose. Here is recipe:";
 
   prompt += req.body.recipe;
 
   const chatCompletion = await openai.chat.completions.create({
     messages: [{ role: "user", content: prompt }],
     model: "gpt-3.5-turbo",
+    max_tokens: 3000,
   });
 
-  console.log(chatCompletion.choices[0].message.content);
+  try {
+    let data = JSON.parse(chatCompletion.choices[0].message.content);
+    console.log(data);
 
-  const text = chatCompletion.choices[0].message.content;
-  const mealInfo = {};
-
-  // Extract health percentage
-  const healthPercentageRegex = /Meal is healthy in (\d+)%/;
-  const healthPercentageMatch = text.match(healthPercentageRegex);
-  if (healthPercentageMatch) {
-    mealInfo.healthPercentage = parseInt(healthPercentageMatch[1]);
+    res.status(200).json({ data: data });
+  } catch (err) {
+    console.log(err);
+    res.status(400).json({ data: err.message });
   }
-
-  // Extract ingredients, substitutions, and reasons
-  const ingredientRegex =
-    /Ingredient : ([^\n]+)\n - substitution: ([^\n]+) \n reason: ([^\n]+)/g;
-  const ingredientMatches = text.matchAll(ingredientRegex);
-
-  mealInfo.ingredients = [];
-
-  for (const match of ingredientMatches) {
-    const ingredientObj = {
-      ingredient: match[1].trim(),
-      substitution: match[2].trim(),
-      reason: match[3].trim(),
-    };
-    mealInfo.ingredients.push(ingredientObj);
-  }
-
-  console.log(mealInfo);
-
-  res.status(200).json({ message: chatCompletion.choices[0].message.content });
 }
