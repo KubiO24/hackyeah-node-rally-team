@@ -7,7 +7,7 @@ const openai = new OpenAI({
 
 export default async function getSubstitutions(recipe) {
   let prompt =
-    "You are professional dietician. Please check this recipe and tell me if it is healthy. If any ingredient has better substitute change recipe to use it and all descriptions why it is better to use it will nutritions facts. Next you should output only numerated list of only ingredient substitution that will make big impact on recipe health, nothing more in format '{ingredient: ..., substitution: ..., reason: ...}', You cannot display ingredient in list when no substitution is needed. Overall format should be : '{healthProcent: ..., list: }', it has to be valid json. No prose. Here is recipe:";
+    "You are professional dietician. Please check this recipe and tell me if it is healthy. If any ingredient has better substitute change recipe to use it and all descriptions why it is better to use it will nutritions facts. Next you should output only numerated list of only ingredient substitution that will make big impact on recipe health, nothing more in format '{ingredient: ..., substitution: ..., reason: ..., quantity: ...}', You cannot display ingredient in list when no substitution is needed. Overall format should be : '{healthProcent: ..., list: }', it has to be valid json. No prose. Here is recipe:";
 
   prompt += recipe;
 
