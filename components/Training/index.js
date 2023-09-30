@@ -7,6 +7,9 @@ export default function Trening() {
   const [activity, setActivity] = useState({});
   const [meal, setMeal] = useState({});
 
+  const [workoutPlan, setWorkoutPlan] = useState([]);
+  const [caloriesBurned, setCaloriesBurned] = useState([]);
+
   useEffect(() => {
     const tempMeal = localStorage.getItem("meal") || {
       kcal: 820,
@@ -19,9 +22,8 @@ export default function Trening() {
       kcal: 600,
       name: "Waight lifting",
     };
-
-    console.log(handleGetWorkoutPlan(tempMeal, tempActivity));
-    console.log(handleGetCaloriesBurned(tempMeal, tempActivity));
+    handleGetCaloriesBurned(tempMeal, tempActivity);
+    handleGetWorkoutPlan(tempMeal, tempActivity);
 
     setMeal(tempMeal);
     setActivity(tempActivity);
@@ -38,14 +40,15 @@ export default function Trening() {
       },
       meal
     );
-    return workoutPlan;
+    setWorkoutPlan(workoutPlan);
   };
   const handleGetCaloriesBurned = (meal, activity) => {
     const caloriesBurned = getCaloriesBurned(
       { sex: "male", weight: 82, height: 182, activity },
       meal
     );
-    return caloriesBurned;
+    console.log(caloriesBurned);
+    setCaloriesBurned(caloriesBurned);
   };
 
   return (
@@ -53,7 +56,31 @@ export default function Trening() {
       <h1>Trening proposition</h1>
       <p>Prefered activity: {activity.name}</p>
       <article>
-        Your meal contained of {meal.kcal} kcal. Best activities for you are: {}
+        <h3>Your meal containes of {meal.kcal}. To burn that you have to: </h3>
+        <ul>
+          {caloriesBurned.map((activity, idx) => (
+            <li key={idx}>
+              {activity.name} for {activity.time} minutes
+            </li>
+          ))}
+        </ul>
+        <h3>Here are our traing plans for you based on your prefferences: </h3>
+        <ol>
+          {workoutPlan.map((workout, idx) => (
+            <li key={idx}>
+              <h3>{workout.title}</h3>
+              <p>{workout.description}</p>
+              <ul>
+                {workout.exercises.map((excersise, idx) => (
+                  <li key={idx}>
+                    {excersise.name} - {excersise.duration} -{" "}
+                    {excersise.burnedCalories} kcal
+                  </li>
+                ))}
+              </ul>
+            </li>
+          ))}
+        </ol>
       </article>
     </div>
   );
