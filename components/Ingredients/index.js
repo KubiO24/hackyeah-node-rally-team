@@ -12,6 +12,17 @@ export default function Index({ navigateToPage }) {
     const [recipe, setRecipe] = useState("");
     const [nutrition, setNutrition] = useState({});
 
+    const SIZE = 100;
+    const STROKE_WIDTH = 10;
+    const RADIUS = SIZE / 2 - STROKE_WIDTH / 2;
+    const circumference = 2 * Math.PI * RADIUS;
+    const offset = circumference - (healthStatus / 100) * circumference;
+    const getColor = () => {
+        if (healthStatus < 50) return "red";
+        if (healthStatus < 75) return "orange";
+        return "green";
+    };
+
     const analyzeIngredientsTest = () => {
         console.log("analyzeIngredientsTest");
         const ingredients = [
@@ -86,16 +97,44 @@ export default function Index({ navigateToPage }) {
                 <button onClick={handleClick}>click</button>
                 <p>Loading: {JSON.stringify(loading)}</p>
                 <p>Error: {JSON.stringify(error)}</p>
-                <h1>Health status: {healthStatus}%</h1>
-                {substitutions.map((substitution) => (
-                    <div>
-                        <p>Ingredient: {substitution.ingredient}</p>
-                        <p>substitution: {substitution.substitution}</p>
-                        <p>Reason: {substitution.reason}</p>
-                    </div>
-                ))}
-                <h1>{response}</h1>
-                <p onClick={() => navigateToPage("new")}>{"Go to New Page >"}</p>
+                {response && (
+                    <>
+                        <h1>Health status:</h1>
+                        <div style={{ width: 100, height: 100, position: "relative" }}>
+                            <span className={styles.healthStatus}>{healthStatus}%</span>
+                            <svg width={SIZE} height={SIZE}>
+                                <circle
+                                    stroke="#eee"
+                                    strokeWidth={STROKE_WIDTH}
+                                    fill="transparent"
+                                    r={RADIUS}
+                                    cx={SIZE / 2}
+                                    cy={SIZE / 2}
+                                />
+                                <circle
+                                    stroke={getColor()}
+                                    strokeWidth={STROKE_WIDTH}
+                                    fill="transparent"
+                                    strokeLinecap="round"
+                                    strokeDasharray={`${circumference} ${circumference}`}
+                                    strokeDashoffset={offset}
+                                    r={RADIUS}
+                                    cx={SIZE / 2}
+                                    cy={SIZE / 2}
+                                    style={{ transform: "rotate(-90deg)", transformOrigin: "50% 50%" }}
+                                />
+                            </svg>
+                        </div>
+                        {substitutions.map((substitution) => (
+                            <div>
+                                <p>Ingredient: {substitution.ingredient}</p>
+                                <p>substitution: {substitution.substitution}</p>
+                                <p>Reason: {substitution.reason}</p>
+                            </div>
+                        ))}
+                        <h1>{response}</h1>
+                    </>
+                )}
             </main>
         </div>
     );
