@@ -1,9 +1,11 @@
-import styles from './Header.module.css';
+import styles from "./Header.module.css";
 
 export default function Header() {
   return (
-    <>
-      <p className={styles.head}>Header / Menu / Navigation</p>
-    </>
+    <div className={styles.container}>
+      <p className={styles.head}>Ingredients</p>
+      <p className={styles.head}>Substitutions</p>
+      <p className={styles.head}>Trening</p>
+    </div>
   );
 }
