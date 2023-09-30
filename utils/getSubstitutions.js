@@ -1,8 +1,7 @@
 import OpenAI from "openai";
-import { ENV } from "../constants/env";
 
 const openai = new OpenAI({
-  apiKey: ENV.OPENAI_API_KEY,
+  apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
   dangerouslyAllowBrowser: true,
 });
 
@@ -25,6 +24,6 @@ export default async function getSubstitutions(recipe) {
     return data;
   } catch (err) {
     console.log(err);
-    return err;
+    return null;
   }
 }

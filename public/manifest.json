@@ -1,9 +1,9 @@
 {
     "manifest_version": 3,
-    "name": "NEXT-CHROME-STARTER",
-    "short_name": "N-C-S",
+    "name": "RecipeMe - Your Ultimate Recipe and Nutrition Guide",
+    "short_name": "RecipeMe",
     "version": "0.0.1",
-    "description": "Next.js Chrome Extension Starter, Demo Example by ibnzUK. https://github.com/ibnzUK/next-chrome-starter",
+    "description": "Discover a world where culinary excellence meets nutritional precision with RecipeMe, the Chrome extension that's more than a recipe manager – it's your personal chef, dietitian, and personal trainer rolled into one.",
     "icons": {
         "16": "/icons/icon16.png",
         "32": "/icons/icon32.png",

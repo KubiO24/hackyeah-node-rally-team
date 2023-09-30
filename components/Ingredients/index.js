@@ -7,9 +7,11 @@ export default function Index({ navigateToPage }) {
   const [healthStatus, setHealthStatus] = useState(0);
   const [substitutions, setSubstitutions] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   const handleClick = () => {
     setLoading(true);
+    setError(false);
     let weight = localStorage.getItem("weight");
     let height = localStorage.getItem("height");
     let activity = localStorage.getItem("activity");
@@ -40,6 +42,12 @@ export default function Index({ navigateToPage }) {
 
         let substitutions = await getSubstitutions(recipe);
 
+        if (!substitutions) {
+          setError(true);
+          setLoading(false);
+          return;
+        }
+
         setResponse(JSON.stringify(substitutions));
         setHealthStatus(substitutions.healthProcent);
         setSubstitutions(substitutions.list);
@@ -53,8 +61,8 @@ export default function Index({ navigateToPage }) {
     <div className={styles.container}>
       <main className={styles.main}>
         <button onClick={handleClick}>click</button>
-        <p>{response}</p>
-        <p>Loading: {loading}</p>
+        <p>Loading: {JSON.stringify(loading)}</p>
+        <p>Error: {JSON.stringify(error)}</p>
         <h1>Health status: {healthStatus}%</h1>
         {substitutions.map((substitution) => (
           <div>
@@ -63,13 +71,7 @@ export default function Index({ navigateToPage }) {
             <p>Reason: {substitution.reason}</p>
           </div>
         ))}
-        <h1 className={styles.title}>NEXT-CHROME-STARTER</h1>
-        <p className={styles.description}>
-          This is an example of a Browser Extension built with NEXT.JS. Please
-          refer to the GitHub repo for running instructions and documentation
-        </p>
-        <h1 className={styles.code}>Index Page ./components/Index/index.js</h1>
-        <p>{"[ - This is Index page content - ]"}</p>
+        <h1>{response}</h1>
         <p onClick={() => navigateToPage("new")}>{"Go to New Page >"}</p>
       </main>
     </div>
