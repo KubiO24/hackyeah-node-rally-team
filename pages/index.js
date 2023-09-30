@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import Index from "../components/Index";
-import New from "../components/New";
+import UserForm from "../components/UserForm";
 
 export default function Home() {
-  const [activePage, setActivePage] = useState("index");
+  const [activePage, setActivePage] = useState("userForm");
 
   const navigateToPage = (page) => {
     setActivePage(page);
@@ -11,8 +11,10 @@ export default function Home() {
 
   return (
     <>
+      {activePage === "userForm" && (
+        <UserForm navigateToPage={navigateToPage} />
+      )}
       {activePage === "index" && <Index navigateToPage={navigateToPage} />}
-      {activePage === "new" && <New navigateToPage={navigateToPage} />}
     </>
   );
 }
