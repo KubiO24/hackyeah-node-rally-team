@@ -1,16 +1,76 @@
 .container {
-  width: 400px;
-  height: 485px;
-  padding: 5px;
-  border: 1px solid black;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: column;
+    width: 400px;
+    height: 485px;
+    padding: 5px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
 }
 .form {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  gap: 10px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+    overflow-y: auto;
+}
+
+.form label {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.input {
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    color: #2c3e50;
+    font-size: 13px;
+    outline: none;
+}
+
+.allergens {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.allergens label {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    flex-wrap: nowrap;
+}
+
+.allergen {
+    cursor: pointer;
+}
+
+.pregnancy {
+    margin: 12px 0;
+}
+
+.pregnancy label {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+.button {
+    width: 100%;
+    padding: 10px 0;
+    background-color: rgb(76, 214, 120);
+    border-radius: 8px;
+    border: 1px solid white;
+    color: white;
+    cursor: pointer;
+    font-size: 1em;
 }
