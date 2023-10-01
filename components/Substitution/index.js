@@ -156,7 +156,7 @@ export default function Substitution({
     return (
         <div className={styles.container}>
             <main className={styles.main}>
-                <button onClick={() => testAnalyze()}>Analyze ingredients</button>
+                {/* <button onClick={() => testAnalyze()}>Analyze ingredients</button> */}
                 {/* <p>Recipe:</p>
                 <p>{recipe}</p>
                 <p>Nutrition:</p>
@@ -165,18 +165,22 @@ export default function Substitution({
                 <p>{recipeSubstitute}</p>
                 <p>Substitutions Nutrition:</p>
                 <p>{JSON.stringify(substitutionsNutrition, null, 5)}</p> */}
-                <button className={styles.button} onClick={handleClick}>
-                    Analyze Recipe
-                </button>
-                <p>Loading: {JSON.stringify(loading)}</p>
-                <p>Error: {JSON.stringify(error)}</p>
+                {!response && (
+                    <>
+                        <button className={styles.button} onClick={handleClick}>
+                            Analyze Recipe
+                        </button>
+                        <p>Loading: {JSON.stringify(loading)}</p>
+                        <p>Error: {JSON.stringify(error)}</p>
+                    </>
+                )}
 
-                <div>
+                {/* <div>
                     <div>INGREDIENTS NUTRITION</div>
                     <div>{JSON.stringify(ingredientsNutrition, null, 5)}</div>
                     <div>SUBSTITUTION NUTRITION</div>
                     <div>{JSON.stringify(substitutionsNutrition, null, 5)}</div>
-                </div>
+                </div> */}
 
                 {response && (
                     <>
@@ -218,12 +222,11 @@ export default function Substitution({
                                 </div>
                             ))}
                         </div>
-                        <h1>{response}</h1>
                     </>
                 )}
-                <h1>{response}</h1>
+                {/* <h1>{response}</h1>
                 <h2>{JSON.stringify(substitutions.map((s) => s.quantity + " " + s.substitution))}</h2>
-                <h2>{JSON.stringify(substitutions.map((s) => s.quantity + " " + s.ingredient))}</h2>
+                <h2>{JSON.stringify(substitutions.map((s) => s.quantity + " " + s.ingredient))}</h2> */}
             </main>
         </div>
     );
