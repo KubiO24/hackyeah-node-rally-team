@@ -34,6 +34,7 @@ export default function Nutrictions({ ingredientsNutrition, substitutionsNutriti
 
             // Add the substitution_quantity property to the item
             data[key].substitution_quantity = substitutionQuantity;
+            // data[key].substitution_quantity = originalQuantity;
 
             result[unit].push(data[key]);
         }
