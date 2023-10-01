@@ -82,17 +82,15 @@ const NutritionCharts = ({ ingredientsNutrition, substitutionsNutrition }) => {
                 <div>
                     {arrayData.map((data) => (
                         <>
-                            {data.label.length <= 25 &&
+                            {data.label.length < 25 &&
                                 data.substitution_quantity > 0 &&
                                 data.quantity > 0 &&
                                 (data.substitution_quantity / data.quantity - 1) * 100 < 200 && (
                                     <div className={styles.line}>
                                         <h3>
-                                            {badLabels.some((v) => data.label.toLowerCase().includes(v))
-                                                ? "(b)"
-                                                : "(g)"}
-                                            {data.label}: {data.quantity.toFixed(2)} |{" "}
-                                            {data.substitution_quantity.toFixed(2)}
+                                            {`${data.label}: ${data.quantity.toFixed(
+                                                2
+                                            )} -> ${data.substitution_quantity.toFixed(2)}`}
                                         </h3>
                                         <h2
                                             style={{

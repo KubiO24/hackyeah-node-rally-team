@@ -17,7 +17,7 @@ export default function Nutritions({ ingredientsNutrition, substitutionsNutritio
                     TABLE
                 </div>
                 <div className={chartClasses} onClick={() => setIsTable(false)}>
-                    CHARTS
+                    COMPARISON
                 </div>
             </div>
 
