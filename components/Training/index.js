@@ -54,10 +54,12 @@ export default function Trening() {
 
   return (
     <div className={styles.container}>
-      <h1>Trening proposition</h1>
-      <p>Prefered activity: {activity.name}</p>
+      <h1 className={styles.header}>Training suggestion</h1>
+      <p style={{ fontSize: "1.3em" }}>Prefered activity: {activity.name}</p>
       <article>
-        <h3>Your meal containes of {meal.kcal}. To burn that you have to: </h3>
+        <h3>
+          Your meal containes of {meal.kcal} kcal, to burn that you have to:{" "}
+        </h3>
         <ul>
           {caloriesBurned.map((activity, idx) => (
             <li key={idx}>

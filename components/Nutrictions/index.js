@@ -133,6 +133,10 @@ export default function Nutrictions({ ingredientsNutrition, substitutionsNutriti
                 );
             })}
 
+            <button className={styles.button} onClick={() => setAdvancedMode((prevState) => !prevState)}>
+                {advancedMode ? "Widok podstawowy" : "Widok zaawansowany"}
+            </button>
+
             {advancedMode ? (
                 Object.keys(dividedIngredientData).map((unit) => (
                     <ResponsiveContainer width="100%" height="100%">
