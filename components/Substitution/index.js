@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import styles from "../../styles/Pages.module.css";
 import getSubstitutions from "../../utils/getSubstitutions";
 import analyzeIngredients from "../../utils/analyzeIngredients";
+import substitutionsStyle from "./styles.module.css";
 
 const MOCK_INGREDIENTS = [
     "1 ½ pounds lean ground beef",

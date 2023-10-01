@@ -16,7 +16,6 @@ export default function UserForm({ navigateToPage }) {
   const [trainingGoal, setTrainingGoal] = useState("");
   const [sex, setSex] = useState("");
   const [foodAllergy, setFoodAllergy] = useState([]); // Default to "None"
-  const [trainingPreference, setTrainingPreference] = useState("");
   const [isPregnant, setIsPregnant] = useState(false); // New state for Pregnancy checkbox
 
   // Function to handle form submission
@@ -30,7 +29,6 @@ export default function UserForm({ navigateToPage }) {
     console.log("Training Goal:", trainingGoal);
     console.log("Sex:", sex);
     console.log("Food Allergy:", foodAllergy);
-    console.log("Training Preference:", trainingPreference);
     console.log("Pregnancy:", isPregnant);
 
     // Validate
@@ -55,11 +53,6 @@ export default function UserForm({ navigateToPage }) {
       return;
     }
 
-    if (trainingPreference === "") {
-      alert("Please select a training preference");
-      return;
-    }
-
     // Save the form input values to local storage
     localStorage.setItem("weight", weight);
     localStorage.setItem("height", height);
@@ -67,7 +60,6 @@ export default function UserForm({ navigateToPage }) {
     localStorage.setItem("trainingGoal", trainingGoal);
     localStorage.setItem("sex", sex);
     localStorage.setItem("foodAllergy", JSON.stringify(foodAllergy));
-    localStorage.setItem("trainingPreference", trainingPreference);
     localStorage.setItem("isPregnant", isPregnant); // Store Pregnancy checkbox value
 
     console.log("Save form");
@@ -141,21 +133,6 @@ export default function UserForm({ navigateToPage }) {
           >
             <option value="">Select Sex</option>
             {sexOptions.map((o) => (
-              <option key={o} value={o}>
-                {o}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label>
-          Training Preference:
-          <select
-            className={styles.input}
-            value={trainingPreference}
-            onChange={(e) => setTrainingPreference(e.target.value)}
-          >
-            <option value="">Select Training Preference</option>
-            {trainingPreferenceOptions.map((o) => (
               <option key={o} value={o}>
                 {o}
               </option>
