@@ -1,4 +1,4 @@
-# RecipeMe Chrome Extension
+# RecipeMe - Your Ultimate Recipe and Nutrition Guide
 
 ## Description
 
