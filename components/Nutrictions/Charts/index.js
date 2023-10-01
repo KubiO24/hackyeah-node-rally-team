@@ -12,24 +12,13 @@ import {
 } from "recharts";
 import styles from "./styles.module.css";
 
-const NutritionCharts = ({
-  ingredientsNutrition,
-  substitutionsNutrition,
-  advancedMode,
-}) => {
-  const [dividedIngredientData, setDividedIngredientData] = useState({});
-  const [ingredientDataArray, setIngredientDataArray] = useState([]);
+const NutritionCharts = ({ ingredientsNutrition, substitutionsNutrition }) => {
+  const [advancedMode, setAdvancedMode] = useState(false);
 
   let ingredientData = Object.values(ingredientsNutrition.totalNutrients ?? {});
   let substitutionData = Object.values(
     substitutionsNutrition.totalNutrients ?? {}
   );
-
-  useEffect(() => {
-    // let temp = groupByUnit(ingredientData);
-    // setDividedIngredientData(temp);
-    // setIngredientDataArray(extractObjectsToArray(temp));
-  }, []);
 
   function groupByUnit(data, substitutionData) {
     const result = {};
@@ -72,6 +61,12 @@ const NutritionCharts = ({
 
   return (
     <div className={styles.container}>
+      <button
+        className={styles.button}
+        onClick={() => setAdvancedMode((prevState) => !prevState)}
+      >
+        {advancedMode ? "Widok podstawowy" : "Widok zaawansowany"}
+      </button>
       {advancedMode ? (
         Object.keys(groupedData).map((unit) => (
           <ResponsiveContainer width="100%" height="100%">
