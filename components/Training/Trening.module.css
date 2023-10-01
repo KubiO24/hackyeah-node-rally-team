@@ -1,7 +1,20 @@
 .container {
   width: 400px;
   height: 485px;
-  padding: 5px;
+  padding: 20px;
+  font-size: 1.2em;
+  margin-bottom: 30px;
+}
+.container article {
+  margin-bottom: 30px;
+}
+
+.l {
+  margin: 0;
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
 }
 .header {
   display: flex;
@@ -9,4 +22,38 @@
   align-items: center;
   width: 100%;
   margin-bottom: 20px;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  background-color: #d9ffe9;
+  border-radius: 12px;
+  transition: all 250ms ease-in-out;
+  padding: 0 20px;
+  cursor: pointer;
+}
+
+.h3 {
+  margin: 10px 0 0 0;
+  font-size: 1.5em;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.description {
+  font-size: 1.2em;
+  margin: 10px;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.nav > img {
+  margin-top: 10px;
+  width: 24px;
 }

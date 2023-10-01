@@ -3,8 +3,9 @@ import React, { useState, useEffect } from "react";
 import getWorkoutPlan from "../../utils/getWorkoutPlan";
 import getCaloriesBurned from "../../utils/getCaloriesBurned";
 import Loader from "../Loader";
+import Card from "./Card";
 
-export default function Trening() {
+export default function Trening({ ingredientsNutrition, navigateToPage }) {
   const [activity, setActivity] = useState({});
   const [meal, setMeal] = useState({});
 
@@ -12,42 +13,36 @@ export default function Trening() {
   const [caloriesBurned, setCaloriesBurned] = useState([]);
 
   useEffect(() => {
-    const tempMeal = localStorage.getItem("meal") || {
-      kcal: 820,
-      carbs: 100,
-      sugar: 20,
-      proteins: 20,
-      fat: 20,
+    const tempMeal = {
+      kcal: ingredientsNutrition.calories,
+      carbs: ingredientsNutrition.totalDaily.CHOCDF.quantity,
+      proteins: ingredientsNutrition.totalDaily.PROCNT.quantity,
+      fat: ingredientsNutrition.totalDaily.FAT.quantity,
     };
     const tempActivity = JSON.parse(localStorage.getItem("activity")) || {
       kcal: 600,
       name: "Waight lifting",
     };
-    handleGetCaloriesBurned(tempMeal, tempActivity);
-    handleGetWorkoutPlan(tempMeal, tempActivity);
+
+    const thisPerson = {
+      activity: tempActivity,
+      sex: localStorage.getItem("sex"),
+      weight: localStorage.getItem("weight"),
+      height: localStorage.getItem("height"),
+    };
+    handleGetCaloriesBurned(tempMeal, thisPerson);
+    handleGetWorkoutPlan(tempMeal, thisPerson);
 
     setMeal(tempMeal);
     setActivity(tempActivity);
   }, []);
 
-  const handleGetWorkoutPlan = async (meal, activity) => {
-    const workoutPlan = await getWorkoutPlan(
-      {
-        sex: "male",
-        weight: 82,
-        height: 182,
-        goal: "Gaining muscle",
-        activity,
-      },
-      meal
-    );
+  const handleGetWorkoutPlan = async (meal, thisPerson) => {
+    const workoutPlan = await getWorkoutPlan(thisPerson, meal);
     setWorkoutPlan(workoutPlan);
   };
-  const handleGetCaloriesBurned = (meal, activity) => {
-    const caloriesBurned = getCaloriesBurned(
-      { sex: "male", weight: 82, height: 182, activity },
-      meal
-    );
+  const handleGetCaloriesBurned = (meal, thisPerson) => {
+    const caloriesBurned = getCaloriesBurned(thisPerson, meal);
     console.log(caloriesBurned);
     setCaloriesBurned(caloriesBurned);
   };
@@ -60,7 +55,7 @@ export default function Trening() {
         <h3>
           Your meal containes of {meal.kcal} kcal, to burn that you have to:{" "}
         </h3>
-        <ul>
+        <ul className={styles.l} style={{ marginLeft: 20 }}>
           {caloriesBurned.map((activity, idx) => (
             <li key={idx}>
               {activity.name} for {activity.time} minutes
@@ -69,20 +64,9 @@ export default function Trening() {
         </ul>
         <h3>Here are our traing plans for you based on your prefferences: </h3>
         {workoutPlan.length ? (
-          <ol>
+          <ol className={styles.l} style={{ padding: 0 }}>
             {workoutPlan.map((workout, idx) => (
-              <li key={idx}>
-                <h3>{workout.title}</h3>
-                <p>{workout.description}</p>
-                <ul>
-                  {workout.exercises.map((excersise, idx) => (
-                    <li key={idx}>
-                      {excersise.name} - {excersise.duration} -{" "}
-                      {excersise.burnedCalories} kcal
-                    </li>
-                  ))}
-                </ul>
-              </li>
+              <Card key={idx} idx={idx} workout={workout} />
             ))}
           </ol>
         ) : (
