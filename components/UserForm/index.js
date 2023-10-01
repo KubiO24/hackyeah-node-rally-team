@@ -147,21 +147,6 @@ export default function UserForm({ navigateToPage }) {
             ))}
           </select>
         </label>
-        <label>
-          Training Preference:
-          <select
-            className={styles.input}
-            value={trainingPreference}
-            onChange={(e) => setTrainingPreference(e.target.value)}
-          >
-            <option value="">Select Training Preference</option>
-            {trainingPreferenceOptions.map((o) => (
-              <option key={o} value={o}>
-                {o}
-              </option>
-            ))}
-          </select>
-        </label>
         <div className={styles.foodAllergy}>
           <p>Select Food Allergens:</p>
           <div className={styles.allergens}>
