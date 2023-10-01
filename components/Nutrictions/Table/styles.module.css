@@ -1,0 +1,60 @@
+.container {
+    width: 400px;
+    height: 485px;
+    padding: 5px;
+}
+
+.sectionTitle {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.nutrientName {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.nutrientLabels {
+    display: flex;
+    flex-direction: row;
+}
+
+.nutrientLabel {
+    width: 50%;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.nutrientValues {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.ingredientSection {
+}
+
+.ingredientName {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.ingredientNutrients {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 16px;
+}
+
+.row {
+}
+
+.subrowTitle {
+}
+
+.subrow {
+}
