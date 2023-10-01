@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import {
   BarChart,
@@ -17,11 +17,17 @@ export default function Nutrictions({
   substitutionsNutrition,
 }) {
   const [advancedMode, setAdvancedMode] = useState(false);
+  const [dividedIngredientData, setDividedIngredientData] = useState({});
+  const [ingredientDataArray, setIngredientDataArray] = useState([]);
 
   let ingredientData = Object.values(ingredientsNutrition.totalNutrients ?? {});
-  let substituteData = Object.values(
-    substitutionsNutrition.totalNutrients ?? {}
-  );
+
+  useEffect(() => {
+    let temp = groupByUnit(ingredientData);
+
+    setDividedIngredientData(temp);
+    setIngredientDataArray(extractObjectsToArray(temp));
+  }, []);
 
   function groupByUnit(data) {
     const result = {};
@@ -49,10 +55,6 @@ export default function Nutrictions({
     return result;
   }
 
-  const dividedIngredientData = groupByUnit(ingredientData);
-
-  console.log(dividedIngredientData);
-
   function extractObjectsToArray(inputObject) {
     const resultArray = [];
 
@@ -64,8 +66,6 @@ export default function Nutrictions({
 
     return resultArray;
   }
-
-  const ingredientDataArray = extractObjectsToArray(dividedIngredientData);
 
   return (
     <div className={styles.container}>
