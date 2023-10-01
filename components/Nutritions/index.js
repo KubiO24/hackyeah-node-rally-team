@@ -4,7 +4,7 @@ import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Resp
 import NutritionCharts from "./Charts";
 import NutritionTable from "./Table";
 
-export default function Nutrictions({ ingredientsNutrition, substitutionsNutrition }) {
+export default function Nutritions({ ingredientsNutrition, substitutionsNutrition }) {
     const [isTable, setIsTable] = useState(false);
 
     const tableClasses = `${styles.switchTab} ${isTable ? styles.active : ""}`;

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import UserForm from "../components/UserForm";
 import Substitution from "../components/Substitution";
-import Nutrictions from "../components/Nutrictions";
+import Nutritions from "../components/Nutritions";
 import Training from "../components/Training";
 import MOCK_NUTRITIONS from "../MOCK_NUTRITIONS.json";
 
@@ -21,8 +21,8 @@ export default function Home({ navigateToPage, activePage }) {
                     setSubstitutionsNutrition={setSubstitutionsNutrition}
                 />
             )}
-            {activePage === "nutrictions" && (
-                <Nutrictions
+            {activePage === "nutritions" && (
+                <Nutritions
                     navigateToPage={navigateToPage}
                     ingredientsNutrition={ingredientsNutrition}
                     substitutionsNutrition={substitutionsNutrition}
