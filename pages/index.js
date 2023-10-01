@@ -6,8 +6,8 @@ import Training from "../components/Training";
 import MOCK_NUTRITIONS from "../MOCK_NUTRITIONS.json";
 
 export default function Home({ navigateToPage, activePage }) {
-    const [ingredientsNutrition, setIngredientsNutrition] = useState(MOCK_NUTRITIONS);
-    const [substitutionsNutrition, setSubstitutionsNutrition] = useState(MOCK_NUTRITIONS);
+    const [ingredientsNutrition, setIngredientsNutrition] = useState({});
+    const [substitutionsNutrition, setSubstitutionsNutrition] = useState({});
 
     return (
         <>
