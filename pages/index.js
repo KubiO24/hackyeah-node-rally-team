@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import UserForm from "../components/UserForm";
-import Ingredients from "../components/Substitution";
-import Substitutions from "../components/Nutrictions";
+import Substitution from "../components/Substitution";
+import Nutrictions from "../components/Nutrictions";
 import Training from "../components/Training";
 import MOCK_NUTRITIONS from "../MOCK_NUTRITIONS.json";
 
