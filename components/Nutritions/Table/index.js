@@ -108,7 +108,9 @@ const NutritionTable = ({ ingredientsNutrition, substitutionsNutrition }) => {
                 </div>
             </div>
 
-            <div className={styles.sectionTitle}>Ingredients Nutritional Values</div>
+            <div className={styles.sectionTitle} style={{ marginTop: 24 }}>
+                Ingredients Nutritional Values
+            </div>
             {dataSource.ingredients.map((ingredientRaw) => {
                 const ingredient = ingredientRaw.parsed[0];
 

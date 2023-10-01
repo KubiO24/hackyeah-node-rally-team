@@ -5,8 +5,8 @@ import styles from "./styles.module.css";
 const NutritionCharts = ({ ingredientsNutrition, substitutionsNutrition }) => {
     const [advancedMode, setAdvancedMode] = useState(false);
 
-    let ingredientData = Object.values(ingredientsNutrition.totalNutrients ?? {});
-    let substitutionData = Object.values(substitutionsNutrition.totalNutrients ?? {});
+    let ingredientData = ingredientsNutrition ? Object.values(ingredientsNutrition.totalNutrients ?? {}) : null;
+    let substitutionData = substitutionsNutrition ? Object.values(substitutionsNutrition.totalNutrients ?? {}) : null;
 
     const badLabels = ["energy", "fat", "sugar", "cholesterol", "carbohydrates"];
 
@@ -52,7 +52,7 @@ const NutritionCharts = ({ ingredientsNutrition, substitutionsNutrition }) => {
     return (
         <div className={styles.container}>
             <button className={styles.button} onClick={() => setAdvancedMode((prevState) => !prevState)}>
-                {advancedMode ? "Widok podstawowy" : "Widok zaawansowany"}
+                {advancedMode ? "Basic Visualization" : "Advanced Visualization "}
             </button>
             {advancedMode ? (
                 Object.keys(groupedData).map((unit) => (

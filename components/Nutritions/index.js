@@ -1,14 +1,15 @@
-import { useEffect, useState } from "react";
-import styles from "./styles.module.css";
-import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
+import { useState } from "react";
+
 import NutritionCharts from "./Charts";
 import NutritionTable from "./Table";
+
+import styles from "./styles.module.css";
 
 export default function Nutritions({ ingredientsNutrition, substitutionsNutrition }) {
     const [isTable, setIsTable] = useState(false);
 
-    const tableClasses = `${styles.switchTab} ${isTable ? styles.active : ""}`;
-    const chartClasses = `${styles.switchTab} ${!isTable ? styles.active : ""}`;
+    const tableClasses = `${styles.switchTab} ${styles.tableTab} ${isTable ? styles.active : ""}`;
+    const chartClasses = `${styles.switchTab} ${styles.chartTab} ${!isTable ? styles.active : ""}`;
 
     return (
         <div className={styles.container}>
