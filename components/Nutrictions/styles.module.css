@@ -4,61 +4,6 @@
     padding: 5px;
 }
 
-.sectionTitle {
-    font-size: 24px;
-    font-weight: bold;
-    text-align: center;
-}
-
-.nutrientName {
-    font-size: 20px;
-    font-weight: bold;
-    text-align: center;
-}
-
-.nutrientLabels {
-    display: flex;
-    flex-direction: row;
-}
-
-.nutrientLabel {
-    width: 50%;
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
-}
-
-.nutrientValues {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.ingredientSection {
-}
-
-.ingredientName {
-    font-size: 20px;
-    font-weight: bold;
-    text-align: center;
-}
-
-.ingredientNutrients {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    font-size: 16px;
-}
-
-.row {
-}
-
-.subrowTitle {
-}
-
-.subrow {
-}
-
 .button {
     width: 100%;
     margin-bottom: 24px;
@@ -69,4 +14,22 @@
     color: white;
     cursor: pointer;
     font-size: 1.1em;
+}
+
+.switch {
+    display: flex;
+    padding: 10px 0;
+}
+
+.switchTab {
+    width: 50%;
+    text-align: center;
+    background-color: white;
+    color: rgb(76, 214, 120);
+    padding: 10px 0;
+}
+
+.active {
+    background-color: rgb(76, 214, 120);
+    color: white;
 }

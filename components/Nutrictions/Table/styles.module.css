@@ -58,3 +58,21 @@
 
 .subrow {
 }
+
+.switch {
+    display: flex;
+    padding: 10px 0;
+}
+
+.switchTab {
+    width: 50%;
+    text-align: center;
+    background-color: white;
+    color: rgb(76, 214, 120);
+    padding: 10px 0;
+}
+
+.active {
+    background-color: rgb(76, 214, 120);
+    color: white;
+}
