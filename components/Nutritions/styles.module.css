@@ -1,7 +1,10 @@
 .container {
     width: 400px;
     height: 485px;
-    padding: 5px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .button {
@@ -17,19 +20,32 @@
 }
 
 .switch {
+    width: 400px;
     display: flex;
-    padding: 10px 0;
+    padding: 10px 8px;
 }
 
 .switchTab {
     width: 50%;
-    text-align: center;
+    padding: 10px 0;
     background-color: white;
     color: rgb(76, 214, 120);
-    padding: 10px 0;
+    text-align: center;
+    cursor: pointer;
+}
+
+.tableTab {
+    border: 1px solid #ccc;
+    border-right: none;
+}
+
+.chartTab {
+    border: 1px solid #ccc;
+    border-left: none;
 }
 
 .active {
     background-color: rgb(76, 214, 120);
+    border: 1px solid rgb(76, 214, 120);
     color: white;
 }

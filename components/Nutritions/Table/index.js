@@ -31,68 +31,127 @@ const NutritionTable = ({ ingredientsNutrition, substitutionsNutrition }) => {
                 </div>
             </div>
 
-            <div className={styles.sectionTitle}>INGREDIENTS</div>
+            <div className={styles.sectionTitle} style={{ marginTop: 0 }}>
+                Total Nutritional Values
+            </div>
+
             <div className={styles.generalNutrients}>
-                <div className={styles.nutrientLabels}>
-                    <div className={styles.nutrientLabel}>TOTAL</div>
-                    <div className={styles.nutrientLabel}>DAILY</div>
+                <div className={styles.nutrientLine}>
+                    <div className={styles.nutrientName} />
+
+                    <div className={styles.nutrientValues}>
+                        <div className={styles.nutrientLabel}>TOTAL</div>
+                        <div className={styles.nutrientLabel}>NRV</div>
+                    </div>
                 </div>
-                <div className={styles.nutrientName}>{dataSource.totalNutrients.ENERC_KCAL.label}</div>
-                <div className={styles.nutrientValues}>
-                    <div>{dataSource.totalNutrients.ENERC_KCAL.quantity.toFixed(2)}</div>
-                    <div>{dataSource.totalNutrients.ENERC_KCAL.unit}</div>
-                    <div>{dataSource.totalDaily.ENERC_KCAL.quantity.toFixed(2)}</div>
-                    <div>{dataSource.totalDaily.ENERC_KCAL.unit}</div>
+
+                <div className={styles.nutrientLine}>
+                    <div className={styles.nutrientName}>{dataSource.totalNutrients.ENERC_KCAL.label}</div>
+
+                    <div className={styles.nutrientValues}>
+                        <span>
+                            {dataSource.totalNutrients.ENERC_KCAL.quantity.toFixed(2)}{" "}
+                            {dataSource.totalNutrients.ENERC_KCAL.unit}
+                        </span>
+
+                        <span>
+                            {dataSource.totalDaily.ENERC_KCAL.quantity.toFixed(2)}
+                            {dataSource.totalDaily.ENERC_KCAL.unit}
+                        </span>
+                    </div>
                 </div>
-                <div className={styles.nutrientName}>{dataSource.totalNutrients.FAT.label}</div>
-                <div className={styles.nutrientValues}>
-                    <div>{dataSource.totalNutrients.FAT.quantity.toFixed(2)}</div>
-                    <div>{dataSource.totalNutrients.FAT.unit}</div>
-                    <div>{dataSource.totalDaily.FAT.quantity.toFixed(2)}</div>
-                    <div>{dataSource.totalDaily.FAT.unit}</div>
+
+                <div className={styles.nutrientLine}>
+                    <div className={styles.nutrientName}>{dataSource.totalNutrients.FAT.label}</div>
+
+                    <div className={styles.nutrientValues}>
+                        <span>
+                            {dataSource.totalNutrients.FAT.quantity.toFixed(2)} {dataSource.totalNutrients.FAT.unit}
+                        </span>
+
+                        <span>
+                            {dataSource.totalDaily.FAT.quantity.toFixed(2)}
+                            {dataSource.totalDaily.FAT.unit}
+                        </span>
+                    </div>
                 </div>
-                <div className={styles.nutrientName}>{dataSource.totalNutrients.PROCNT.label}</div>
-                <div className={styles.nutrientValues}>
-                    <div>{dataSource.totalNutrients.PROCNT.quantity.toFixed(2)}</div>
-                    <div>{dataSource.totalNutrients.PROCNT.unit}</div>
-                    <div>{dataSource.totalDaily.PROCNT.quantity.toFixed(2)}</div>
-                    <div>{dataSource.totalDaily.PROCNT.unit}</div>
+
+                <div className={styles.nutrientLine}>
+                    <div className={styles.nutrientName}>{dataSource.totalNutrients.PROCNT.label}</div>
+
+                    <div className={styles.nutrientValues}>
+                        <span>
+                            {dataSource.totalNutrients.PROCNT.quantity.toFixed(2)}{" "}
+                            {dataSource.totalNutrients.PROCNT.unit}
+                        </span>
+
+                        <span>
+                            {dataSource.totalDaily.PROCNT.quantity.toFixed(2)}
+                            {dataSource.totalDaily.PROCNT.unit}
+                        </span>
+                    </div>
                 </div>
-                <div className={styles.nutrientName}>{dataSource.totalNutrients.CHOLE.label}</div>
-                <div className={styles.nutrientValues}>
-                    <div>{dataSource.totalNutrients.CHOLE.quantity.toFixed(2)}</div>
-                    <div>{dataSource.totalNutrients.CHOLE.unit}</div>
-                    <div>{dataSource.totalDaily.CHOLE.quantity.toFixed(2)}</div>
-                    <div>{dataSource.totalDaily.CHOLE.unit}</div>
+
+                <div className={styles.nutrientLine}>
+                    <div className={styles.nutrientName}>{dataSource.totalNutrients.CHOLE.label}</div>
+
+                    <div className={styles.nutrientValues}>
+                        <span>
+                            {dataSource.totalNutrients.CHOLE.quantity.toFixed(2)} {dataSource.totalNutrients.CHOLE.unit}
+                        </span>
+
+                        <span>
+                            {dataSource.totalDaily.CHOLE.quantity.toFixed(2)}
+                            {dataSource.totalDaily.CHOLE.unit}
+                        </span>
+                    </div>
                 </div>
             </div>
 
-            <div className={styles.sectionTitle}>INGREDIENTS</div>
+            <div className={styles.sectionTitle} style={{ marginTop: 24 }}>
+                Ingredients Nutritional Values
+            </div>
             {dataSource.ingredients.map((ingredientRaw) => {
                 const ingredient = ingredientRaw.parsed[0];
 
                 return (
                     <div className={styles.ingredientSection}>
                         <div className={styles.ingredientName}>{ingredient.food}</div>
+
                         <div className={styles.ingredientNutrients}>
-                            <div>{ingredient.nutrients.ENERC_KCAL.label}</div>
-                            <div>{ingredient.nutrients.ENERC_KCAL.quantity.toFixed(2)}</div>
-                            <div>{ingredient.nutrients.ENERC_KCAL.unit}</div>
+                            <span>{ingredient.nutrients.ENERC_KCAL.label}</span>
+
+                            <span>
+                                <span>{ingredient.nutrients.ENERC_KCAL.quantity.toFixed(2)}</span>{" "}
+                                <span>{ingredient.nutrients.ENERC_KCAL.unit}</span>
+                            </span>
                         </div>
+
                         <div className={styles.ingredientNutrients}>
-                            <div>{ingredient.nutrients.FAT.label}</div>
-                            <div>{ingredient.nutrients.FAT.quantity.toFixed(2)}</div>
-                            <div>{ingredient.nutrients.FAT.unit}</div>
+                            <span>{ingredient.nutrients.FAT.label}</span>
+
+                            <span>
+                                <span>{ingredient.nutrients.FAT.quantity.toFixed(2)}</span>{" "}
+                                <span>{ingredient.nutrients.FAT.unit}</span>
+                            </span>
                         </div>
+
                         <div className={styles.ingredientNutrients}>
-                            <div>{ingredient.nutrients.PROCNT.label}</div>
-                            <div>{ingredient.nutrients.PROCNT.quantity.toFixed(2)}</div>
-                            <div>{ingredient.nutrients.PROCNT.unit}</div>
+                            <span>{ingredient.nutrients.PROCNT.label}</span>
+
+                            <span>
+                                <span>{ingredient.nutrients.PROCNT.quantity.toFixed(2)}</span>{" "}
+                                <span>{ingredient.nutrients.PROCNT.unit}</span>
+                            </span>
                         </div>
+
                         <div className={styles.ingredientNutrients}>
-                            <div>{ingredient.nutrients.CHOLE.label}</div>
-                            <div>{ingredient.nutrients.CHOLE.quantity.toFixed(2)}</div>
-                            <div>{ingredient.nutrients.CHOLE.unit}</div>
+                            <span>{ingredient.nutrients.CHOLE.label}</span>
+
+                            <span>
+                                <span>{ingredient.nutrients.CHOLE.quantity.toFixed(2)}</span>{" "}
+                                <span>{ingredient.nutrients.CHOLE.unit}</span>
+                            </span>
                         </div>
                     </div>
                 );

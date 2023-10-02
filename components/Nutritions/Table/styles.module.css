@@ -1,43 +1,59 @@
 .container {
-    width: 400px;
-    height: 485px;
-    padding: 5px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
 }
 
 .sectionTitle {
+    margin-top: 16px;
     font-size: 24px;
     font-weight: bold;
     text-align: center;
 }
 
-.nutrientName {
-    font-size: 20px;
-    font-weight: bold;
-    text-align: center;
-}
-
-.nutrientLabels {
+.generalNutrients {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    gap: 6px;
 }
 
 .nutrientLabel {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.nutrientLine {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.nutrientName {
     width: 50%;
     font-size: 16px;
     font-weight: bold;
-    text-align: center;
 }
 
 .nutrientValues {
+    width: 50%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    font-size: 14px;
 }
 
 .ingredientSection {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 8px;
 }
 
 .ingredientName {
+    margin-bottom: 8px;
     font-size: 20px;
     font-weight: bold;
     text-align: center;
@@ -47,7 +63,8 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    font-size: 16px;
+    font-size: 14px;
+    padding: 0 60px;
 }
 
 .row {
@@ -67,12 +84,12 @@
 .switchTab {
     width: 50%;
     text-align: center;
-    background-color: white;
-    color: rgb(76, 214, 120);
-    padding: 10px 0;
+    color: #ccc;
+    cursor: pointer;
 }
 
 .active {
-    background-color: rgb(76, 214, 120);
-    color: white;
+    color: rgb(76, 214, 120);
+    text-decoration: underline;
+    cursor: default;
 }

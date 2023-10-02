@@ -4,7 +4,7 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
             recipeData = message.recipeData;
             break;
         case "getRecipeData":
-            sendResponse(recipeData);
+            recipeData && sendResponse(recipeData);
             break;
         default:
             console.error("Unrecognised message: ", message);

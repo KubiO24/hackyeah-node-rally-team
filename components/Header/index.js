@@ -10,7 +10,7 @@ export default function Header({ activePage, navigateToPage }) {
                 Substitutions
             </p>
             <p
-                className={`${styles.link} ${activePage == "Nutritions" && styles.selected}`}
+                className={`${styles.link} ${activePage == "nutritions" && styles.selected}`}
                 onClick={() => navigateToPage("nutritions")}
             >
                 Nutritions

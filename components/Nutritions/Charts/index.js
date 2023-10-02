@@ -5,8 +5,8 @@ import styles from "./styles.module.css";
 const NutritionCharts = ({ ingredientsNutrition, substitutionsNutrition }) => {
     const [advancedMode, setAdvancedMode] = useState(false);
 
-    let ingredientData = Object.values(ingredientsNutrition.totalNutrients ?? {});
-    let substitutionData = Object.values(substitutionsNutrition.totalNutrients ?? {});
+    let ingredientData = ingredientsNutrition ? Object.values(ingredientsNutrition.totalNutrients ?? {}) : null;
+    let substitutionData = substitutionsNutrition ? Object.values(substitutionsNutrition.totalNutrients ?? {}) : null;
 
     const badLabels = ["energy", "fat", "sugar", "cholesterol", "carbohydrates"];
 
@@ -52,7 +52,7 @@ const NutritionCharts = ({ ingredientsNutrition, substitutionsNutrition }) => {
     return (
         <div className={styles.container}>
             <button className={styles.button} onClick={() => setAdvancedMode((prevState) => !prevState)}>
-                {advancedMode ? "Widok podstawowy" : "Widok zaawansowany"}
+                {advancedMode ? "Basic Visualization" : "Advanced Visualization "}
             </button>
             {advancedMode ? (
                 Object.keys(groupedData).map((unit) => (
@@ -82,17 +82,15 @@ const NutritionCharts = ({ ingredientsNutrition, substitutionsNutrition }) => {
                 <div>
                     {arrayData.map((data) => (
                         <>
-                            {data.label.length <= 25 &&
+                            {data.label.length < 25 &&
                                 data.substitution_quantity > 0 &&
                                 data.quantity > 0 &&
                                 (data.substitution_quantity / data.quantity - 1) * 100 < 200 && (
                                     <div className={styles.line}>
                                         <h3>
-                                            {badLabels.some((v) => data.label.toLowerCase().includes(v))
-                                                ? "(b)"
-                                                : "(g)"}
-                                            {data.label}: {data.quantity.toFixed(2)} |{" "}
-                                            {data.substitution_quantity.toFixed(2)}
+                                            {`${data.label}: ${data.quantity.toFixed(
+                                                2
+                                            )} -> ${data.substitution_quantity.toFixed(2)}`}
                                         </h3>
                                         <h2
                                             style={{
