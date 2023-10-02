@@ -13,12 +13,19 @@ export default function Trening({ ingredientsNutrition, navigateToPage }) {
   const [caloriesBurned, setCaloriesBurned] = useState([]);
 
   useEffect(() => {
-    const tempMeal = {
-      kcal: ingredientsNutrition.calories,
-      carbs: ingredientsNutrition.totalDaily.CHOCDF.quantity,
-      proteins: ingredientsNutrition.totalDaily.PROCNT.quantity,
-      fat: ingredientsNutrition.totalDaily.FAT.quantity,
-    };
+    const tempMeal = ingredientsNutrition
+      ? {
+          kcal: ingredientsNutrition.calories,
+          carbs: ingredientsNutrition.totalDaily.CHOCDF.quantity,
+          proteins: ingredientsNutrition.totalDaily.PROCNT.quantity,
+          fat: ingredientsNutrition.totalDaily.FAT.quantity,
+        }
+      : {
+          kcal: 0,
+          carbs: 0,
+          proteins: 0,
+          fat: 0,
+        };
     const tempActivity = JSON.parse(localStorage.getItem("activity")) || {
       kcal: 600,
       name: "Waight lifting",
@@ -52,16 +59,20 @@ export default function Trening({ ingredientsNutrition, navigateToPage }) {
       <h1 className={styles.header}>Training suggestion</h1>
       <p style={{ fontSize: "1.3em" }}>Prefered activity: {activity.name}</p>
       <article>
-        <h3>
-          Your meal containes of {meal.kcal} kcal, to burn that you have to:{" "}
-        </h3>
-        <ul className={styles.l} style={{ marginLeft: 20 }}>
-          {caloriesBurned.map((activity, idx) => (
-            <li key={idx}>
-              {activity.name} for {activity.time} minutes
-            </li>
-          ))}
-        </ul>
+        {ingredientsNutrition && (
+          <>
+            <h3>
+              Your meal containes of {meal.kcal} kcal, to burn that you have to:{" "}
+            </h3>
+            <ul className={styles.l} style={{ marginLeft: 20 }}>
+              {caloriesBurned.map((activity, idx) => (
+                <li key={idx}>
+                  {activity.name} for {activity.time} minutes
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
         <h3>Here are our traing plans for you based on your prefferences: </h3>
         {workoutPlan.length ? (
           <ol className={styles.l} style={{ padding: 0 }}>
